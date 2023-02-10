@@ -25,6 +25,7 @@ $price = $product['price'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+    // away ka updatey akay la formaka la regay postawa detawa boya assigney akay lera dubara
     $title = $_POST['title'];
     $description = $_POST['description'];
     $price = $_POST['price'];
@@ -36,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         mkdir('images');
     }
 
+    //agar image add kra awa imagey productaka delte bka 
     if ($image) {
         if ($product['image']) {
             unlink($product['image']);

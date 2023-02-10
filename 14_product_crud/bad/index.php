@@ -1,17 +1,16 @@
 <?php
 
 $pdo = new PDO('mysql:host=localhost;port=3306;dbname=products_crud', 'root', '');
-//in case of error throw it 
+
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$search=$_GET['search'] ?? '';
+$search = $_GET['search'] ?? '';
 
 
-if($search){
+if ($search) {
     $statment = $pdo->prepare('SELECT * FROM products WHERE title LIKE :title ORDER BY  create_date DESC');
-    $statment->bindValue(':title',"%$search%"); 
-}
-else{
+    $statment->bindValue(':title', "%$search%");
+} else {
 
     $statment = $pdo->prepare('SELECT * FROM products ORDER BY  create_date DESC');
 }
@@ -19,10 +18,7 @@ else{
 $statment->execute();
 $products = $statment->fetchAll(PDO::FETCH_ASSOC); // how do you wanna get the data 
 
-// echo '<pre>';
-// var_dump($products);
 
-// echo '</pre>';
 
 
 ?>
@@ -50,7 +46,7 @@ $products = $statment->fetchAll(PDO::FETCH_ASSOC); // how do you wanna get the d
 
     <form action="" method="get">
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Search for Products" name="search" value="<?php echo $search ?> " >
+            <input type="text" class="form-control" placeholder="Search for Products" name="search" value="<?php echo $search ?> ">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
         </div>
     </form>
@@ -84,7 +80,6 @@ $products = $statment->fetchAll(PDO::FETCH_ASSOC); // how do you wanna get the d
                         <form style="display: inline-block;" method="post" action="delete.php">
                             <input type="hidden" name="id" value="<?php echo $product['id'] ?>">
                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-
                         </form>
 
                     </td>
