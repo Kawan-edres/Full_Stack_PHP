@@ -15,9 +15,13 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
 
+require_once './functions.php';
+
+
+
 $title = $price = $description = "";
 $errors = [];
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['submit'])) {
 
 
     $title = $_POST['title'];
@@ -64,17 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function randomString($n)
-{
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $str = '';
-    for ($i = 0; $i < $n; $i++) {
-        $index = rand(0, strlen($characters) - 1);
-        $str .= $characters[$index];
-    }
-
-    return $str;
-}
 
 ?>
 
@@ -96,7 +89,7 @@ function randomString($n)
     <h1>Product Crud</h1>
 
     <p>
-        <a href="create.php" class="btn btn-success">Create New Product</a>
+        <a href="index.php" class="btn btn-success">Back to Home</a>
     </p>
 
     <?php if (!empty($errors)) : ?>
@@ -106,6 +99,7 @@ function randomString($n)
             <?php endforeach; ?>
         </div>
     <?php endif; ?>
+
     <form action="create.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label>Product Image</label>
@@ -114,7 +108,7 @@ function randomString($n)
 
         <div class="form-group">
             <label>Product title</label>
-            <input type="text" class="form-control" value="<?php echo $title ?>" name="title" placeholder="Ente Prodcut title">
+            <input type="text" class="form-control" value="<?php echo $title ?>" name="title"  placeholder="Ente Prodcut title">
         </div><br>
 
         <div class="form-group">
@@ -127,8 +121,7 @@ function randomString($n)
             <input type="number" step=".01" name="price" class="form-control" value="<?php echo $price ?>" placeholder="Ente Prodcut price">
         </div><br>
 
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
 
 

@@ -4,8 +4,7 @@
 require_once '../../database.php';
 require_once "../../functions.php";
 
-$search = $_GET['search'] ?? '';
-
+$search = $_GET['search']    ?? '';
 
 if ($search) {
     $statment = $pdo->prepare('SELECT * FROM products WHERE title LIKE :title ORDER BY  create_date DESC');
@@ -18,8 +17,6 @@ if ($search) {
 
 $statment->execute();
 $products = $statment->fetchAll(PDO::FETCH_ASSOC); // how do you wanna get the data 
-
-
 
 
 ?>
@@ -63,7 +60,7 @@ $products = $statment->fetchAll(PDO::FETCH_ASSOC); // how do you wanna get the d
                     <td><?php echo $product["create_date"] ?></td>
                     <td>
 
-                        <a href="update.php?id=<?php echo $product['id'] ?>" type="button" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <a href="update.php ?>" type="button" class="btn btn-sm btn-outline-primary">Edit</a>
 
                         <form style="display: inline-block;" method="post" action="delete.php">
                             <input type="hidden" name="id" value="<?php echo $product['id'] ?>">

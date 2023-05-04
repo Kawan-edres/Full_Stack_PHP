@@ -23,13 +23,12 @@ $title = $product['title'];
 $description = $product['description'];
 $price = $product['price'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST("submit"))) {
 
     // away ka updatey akay la formaka la regay postawa detawa boya assigney akay lera dubara
     $title = $_POST['title'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-
     $image = $_FILES['image'] ?? null;
     $imagePath = '';
 
@@ -120,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Product price</label>
         <input type="number" step=".01" name="price" class="form-control" value="<?php echo $price ?>">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
 </form>
 
 </body>

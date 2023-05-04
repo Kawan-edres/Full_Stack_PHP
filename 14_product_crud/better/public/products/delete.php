@@ -13,7 +13,7 @@ if(!$id){
 
 }
 
-$statement=$pdo->prepare('DELETE FROM products WHERE id=:id');
+$statement=$pdo->prepare('DELETE FROM products WHERE id=:id');//undefind
 $statement->bindValue(':id',$id);
 $statement->execute();
 

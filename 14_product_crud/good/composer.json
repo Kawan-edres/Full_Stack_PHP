@@ -1,0 +1,20 @@
+{
+    "name": "barez/good",
+    "autoload": {
+        "psr-4": {
+            "Barez\\Good\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "kawan idrees",
+            "email": "kawanedres211@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload":{
+        "psr-4":{
+            "app\\":"./"
+        }
+    }
+}
